@@ -11,7 +11,7 @@ RED="\033[1;31m"
 
 info()    { echo -e "${BLUE}${BOLD}==>${RESET} $1"; }
 success() { echo -e "${GREEN}${BOLD} ✔${RESET} $1"; }
-warn()    { echo -e "${YELLOW}${BOLD} /mnt/Data/Repos/User/install.sh{RESET} $1"; }
+warn()    { echo -e "${YELLOW}${BOLD} !${RESET} $1"; }
 error()   { echo -e "${RED}${BOLD} ✘${RESET} $1"; }
 
 REPO_URL="https://github.com/SadDevastator/profile"
@@ -20,10 +20,16 @@ DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
 # --- Clone or locate repo ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [ ! -d "$SCRIPT_DIR/config" ]; then
-    info "Cloning dotfiles from $REPO_URL..."
-    git clone "$REPO_URL" "$DOTFILES_DIR"
+    if [ -d "$DOTFILES_DIR/.git" ]; then
+        info "Updating existing dotfiles at $DOTFILES_DIR..."
+        git -C "$DOTFILES_DIR" pull --ff-only
+        success "Dotfiles updated"
+    else
+        info "Cloning dotfiles from $REPO_URL..."
+        git clone "$REPO_URL" "$DOTFILES_DIR"
+        success "Repository cloned to $DOTFILES_DIR"
+    fi
     cd "$DOTFILES_DIR"
-    success "Repository cloned to $DOTFILES_DIR"
 else
     cd "$SCRIPT_DIR"
     info "Running from local repo at $SCRIPT_DIR"
