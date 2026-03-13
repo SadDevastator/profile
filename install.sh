@@ -15,9 +15,9 @@ else
     cd "$SCRIPT_DIR"
 fi
 
-# Copy configuration files
-cp -r config/ ~/.config/
-cp -r profile/ ~/
+# Copy configuration files (use /. to merge contents, not create subdirectory)
+cp -r config/. ~/.config/
+cp -r profile/. ~/
 
 # Precompile Zsh scripts
 ~/.zsh/bin/precompile_zsh.sh
