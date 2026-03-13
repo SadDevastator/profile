@@ -2,7 +2,7 @@
 set -euo pipefail
 
 REPO_URL="https://github.com/SadDevastator/profile"
-DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.profile}"
+DOTFILES_DIR="${DOTFILES_DIR:-$HOME/.dotfiles}"
 
 # When run via curl|bash, BASH_SOURCE[0] is /dev/stdin — no local repo.
 # Clone the repo so all relative paths are available.

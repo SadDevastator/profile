@@ -37,8 +37,8 @@ bash <(curl -sSL https://raw.githubusercontent.com/SadDevastator/profile/main/in
 **Or clone and run locally:**
 
 ```bash
-git clone https://github.com/SadDevastator/profile ~/.profile
-bash ~/.profile/install.sh
+git clone https://github.com/SadDevastator/profile ~/.dotfiles
+bash ~/.dotfiles/install.sh
 ```
 
 The script will:
